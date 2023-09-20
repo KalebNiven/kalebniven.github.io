@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# BloggingBear
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React-based content generator that facilitates the automatic creation of content documents using data from Google spreadsheets. Below is a guide to setting up, using, and understanding the structure of this project.
 
-## Available Scripts
+## Contributing
 
-In the project directory, you can run:
+To contribute to this project, please fork the repository and submit your pull requests for review.
 
-### `npm start`
+### Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The project is divided into two main folders:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `frontend/`: Contains all the frontend code.
+- `backend/`: Contains all the backend code including the Flask server (`App.py`) and utility functions.
 
-### `npm test`
+## Setting Up
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Before you begin, make sure to have Node.js and npm installed. Follow the next steps to set up the project:
 
-### `npm run build`
+1. Clone the repository to your local environment.
+2. Navigate to the project root directory in your terminal.
+3. Run `npm install` to install all necessary dependencies.
+4. Create a `.env` file in the root directory and add the following environment variable:
+    ```
+    REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id_here
+    ```
+5. Replace `your_google_client_id_here` with your actual Google Client ID.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Running the Application
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run the application, execute the following command in the terminal:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+```
 
-### `npm run eject`
+This will start the development server and the application should open in your default browser at `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Google Authentication
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Users can authenticate using Google to enable the application to create Google docs on their behalf. The authentication status is displayed at the top of the page.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Spreadsheet Input
 
-## Learn More
+This feature allows users to input data through two methods:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Upload a Spreadsheet:** Users can upload a local spreadsheet file.
+2. **Google Spreadsheet URL:** Users can provide a Google Spreadsheet URL to fetch data from.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Spreadsheet Display
 
-### Code Splitting
+Displays the data fetched from the spreadsheet. Users can select rows that will be used in the content generation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Max Tokens Input
 
-### Analyzing the Bundle Size
+Allows users to set the maximum number of tokens to be used in content generation. This effectively sets a limit on the length of the generated content.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Content Generation
 
-### Making a Progressive Web App
+Users can generate content by clicking the "Generate Content" button. The process involves several stages and the progress is displayed in a progress bar.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Generated content will be used to create Google Docs, and the URL of each document will be displayed upon successful creation.
 
-### Advanced Configuration
+### Error Handling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Displays errors and issues that occur during various processes, helping users troubleshoot problems effectively.
 
-### Deployment
+## Components Breakdown
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `App.js`: The main component that houses the state and logic of the application.
+- `SpreadsheetInput.js`: Component to handle the spreadsheet input section.
+- `SpreadsheetDisplay.js`: Component to display the fetched spreadsheet data.
+- `MaxTokensInput.js`: Component to input the max tokens for content generation.
+- `Utilities.js`: A utility file where helper functions are housed.
 
-### `npm run build` fails to minify
+## Key Functions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Below are some of the key functions defined in the `App.js`:
+
+- `handleLoginSuccess`: Handles the process after a successful login.
+- `handleLoginFailure`: Handles the process after a login failure.
+- `handleGeneration`: Orchestrates the content generation process.
+- `getSelectedRows`: Retrieves selected rows from the spreadsheet data.
+- `validateRows`: Validates the selected rows to ensure all required fields are filled.
+- `prepareData`: Prepares data for content generation.
+- `initiateContentGeneration`: Initiates the content generation API call.
+- `handleGenerationResponse`: Handles the response from the content generation API.
+
+## Development
+
+### Environment Variables
+
+- `REACT_APP_GOOGLE_CLIENT_ID`: Your Google OAuth 2.0 Client ID.
+
+### Dependencies
+
+- `react`: For building the UI of the application.
+- `axios`: For making HTTP requests.
+- `react-google-login`: For handling Google OAuth authentication.
+"# BloggingBear_frontend" 
