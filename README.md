@@ -2,6 +2,8 @@
 
 This project is a React-based content generator that facilitates the automatic creation of content documents using data from Google spreadsheets. Below is a guide to setting up, using, and understanding the structure of this project.
 
+Check this document for a full description of the project: https://docs.google.com/document/d/1Isr1CaC8qrSv0FvksPztpuwEmDrFfpKHrMAcm5ciVRc/edit#heading=h.9dqkxxxh98nt
+
 ## Contributing
 
 To contribute to this project, please fork the repository and submit your pull requests for review.
