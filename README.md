@@ -14,8 +14,9 @@ To contribute to this project, please fork the repository and submit your pull r
 
 The project is divided into two main folders:
 
-- `frontend/`: Contains all the frontend code.
-- `backend/`: Contains all the backend code including the Flask server (`App.py`) and utility functions.
+- This project contains all the frontend code.
+- [`backend/`: ](https://github.com/KalebNiven/BloggingBear_backend)
+    - Contains all the backend code including the Flask server (`App.py`) and utility functions.
 
 ## Setting Up
 
