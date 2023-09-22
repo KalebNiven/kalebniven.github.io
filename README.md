@@ -4,6 +4,8 @@ This project is a React-based content generator that facilitates the automatic c
 
 Check this document for a full description of the project: https://docs.google.com/document/d/1Isr1CaC8qrSv0FvksPztpuwEmDrFfpKHrMAcm5ciVRc/edit#heading=h.9dqkxxxh98nt
 
+Here is the spreadsheet data: https://docs.google.com/spreadsheets/d/1-ClO6AKnuK1Sb_l648FsUHxAjxdzXoJphI3OYGhZC9g/edit#gid=550946814
+
 ## Contributing
 
 To contribute to this project, please fork the repository and submit your pull requests for review.
