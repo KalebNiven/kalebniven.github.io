@@ -5,6 +5,7 @@ import FileURLInput from './FileURLInput';
 import { fetchSpreadsheetData, generateContent } from '../services/file';
 import SpreadsheetActions from './SpreadsheetActions';
 import SpreadsheetDisplay from './SpreadSheetDisplay';
+import { config } from '../config';
 
 function FileSelection() {
     const [openPicker, authResponse] = useDrivePicker();
@@ -20,13 +21,13 @@ function FileSelection() {
     useEffect(() => {
         if (selectedFile && selectedFile.embedUrl) {
             setLoading(true);
-            fetchSpreadsheetData(selectedFile.embedUrl, fetchSpreadsheetCallback)
+            fetchSpreadsheetData(selectedFile.embedUrl, fetchSpreadsheetCallback, errorCallback)
         }
     }, [selectedFile]);
 
     const handleGenerateContentFromCustom = () => {
         setLoading(true);
-        fetchSpreadsheetData(customURL, fetchSpreadsheetCallback)
+        fetchSpreadsheetData(customURL, fetchSpreadsheetCallback, errorCallback)
     }
 
     const fetchSpreadsheetCallback = (_response) => {
@@ -37,10 +38,14 @@ function FileSelection() {
         }
     }
 
+    const errorCallback = (_error) => {
+        setError(_error);
+    }
+
     const handleSheetPicker = () => {
         openPicker({
-            clientId: "807847415697-3erg2gu1dfh0lutqldkm1te2b485ff45.apps.googleusercontent.com",
-            developerKey: "AIzaSyDKDkRm2nNdzNtpe5CovXTYjf5dqWo4hRQ",
+            clientId: config.clientId,
+            developerKey: config.developerKey,
             viewId: "SPREADSHEETS",
             // token: token, // pass oauth token in case you already have one
             showUploadView: false,
@@ -61,8 +66,8 @@ function FileSelection() {
 
     const handleFolderPicker = () => {
         openPicker({
-            clientId: "807847415697-3erg2gu1dfh0lutqldkm1te2b485ff45.apps.googleusercontent.com",
-            developerKey: "AIzaSyDKDkRm2nNdzNtpe5CovXTYjf5dqWo4hRQ",
+            clientId: config.clientId,
+            developerKey: config.developerKey,
             viewId: "FOLDERS",
             // token: token, // pass oauth token in case you already have one
             showUploadView: false,

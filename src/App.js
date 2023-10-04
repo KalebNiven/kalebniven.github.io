@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-// import GoogleLoginComponent from 'react-google-login';
-import SpreadsheetInput from './SpreadSheetInput'; // Remember to create and import this component
 import { validateAndParseRows, createDoc, sendTokenToServer } from './Utilities';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import Layout from './components/Layout';
 import FileSelection from './components/FileSelection';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import { GoogleLogin } from '@react-oauth/google';
 
 function App() {
     const [userData, setUserData] = useState(null);
@@ -164,20 +160,12 @@ function App() {
 
 
     return (
-        <GoogleOAuthProvider clientId="807847415697-3erg2gu1dfh0lutqldkm1te2b485ff45.apps.googleusercontent.com">
-            {/* <GoogleLogin
-                onSuccess={credentialResponse => {
-                    console.log(credentialResponse);
-                }}
-                onError={() => {
-                    console.log('Login Failed');
-                }}
-            />; */}
-            <div className="App">
-                <Layout>
-                    <FileSelection />
-                </Layout>
-                {/* <div>
+
+        <div className="App">
+            <Layout>
+                <FileSelection />
+            </Layout>
+            {/* <div>
                 {error && <div className="error-text">{error}</div>}
                 <GoogleLoginComponent
                     clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
@@ -203,7 +191,7 @@ function App() {
                 <button className="generate-content" onClick={handleGeneration}>Generate Content</button>
             </div>
             {/* ... (Add a progress indicator to show the progress to the users) */}
-                {/* <div>
+            {/* <div>
                 <progress value={progress} max="100"></progress>
             </div>
             {docUrl && (
@@ -212,8 +200,7 @@ function App() {
                 </div>
             )}
             {error && <p className="error-message">{error}</p>}  */}
-            </div>
-        </GoogleOAuthProvider>
+        </div>
     );
 }
 
