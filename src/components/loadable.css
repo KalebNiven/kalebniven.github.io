@@ -1,0 +1,73 @@
+.loadable {
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 0;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    >.loading-overlay {
+        position: absolute;
+        visibility: collapse;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(#ffffff, 0.75);
+        user-select: none;
+        z-index: 100;
+        transition: opacity 0.4s, visibility 0.4s;
+
+        >.loading-overlay-spinner {
+            position: absolute;
+            top: calc(50% - 25px);
+            left: calc(50% - 25px);
+            width: 45px;
+            height: 45px;
+
+            >.loading-overlay-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                visibility: collapse;
+                display: block;
+                border: none;
+                user-select: none;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.4s, visibility 0.4s;
+            }
+        }
+    }
+
+    &.loadable--loading {
+        cursor: progress;
+    }
+
+    &.loadable--loading {
+        >.loading-overlay {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &.loadable--loading {
+        opacity: 0.5;
+        min-height: 50px;
+        max-height: 100%;
+
+        >.loading-overlay {
+            >.loading-overlay-spinner {
+                >.loading-overlay-image-loading {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

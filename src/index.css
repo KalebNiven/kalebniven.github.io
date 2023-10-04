@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.font-12 {
+  font-size: 12px;
+}
+
+.sheet-display-div {
+  max-height: 346px;
+  overflow-y: auto;
+}
