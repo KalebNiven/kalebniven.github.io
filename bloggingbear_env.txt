@@ -1,4 +1,0 @@
-Openapi key faizan: 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
-Google API Client ID: 807847415697-tguqpv9i6kcp6427laejhb147qf0b0si.apps.googleusercontent.com
-Google API_key=AIzaSyD76sdeZL7Bst4oX8yehOtf7YBu08JeTeU
-Google service account key: c767699639e68d760a570bee615d4e00987a0d73
