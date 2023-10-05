@@ -50,11 +50,11 @@ function SpreadsheetActions({ sheetRows, selectedRow, setSelectedRow, selectedRo
         </div>
       )}
       <div>
-        {selectedRows && selectedRows.length > 0 && <div className='row pt-4'>
+        <div className='row pt-4'>
           <div className=''>
             <button onClick={() => handleGenerateContent(selectedRows)} className='btn btn-block btn-primary'>Generate Content</button>
           </div>
-        </div>}
+        </div>
       </div>
     </div>
   );

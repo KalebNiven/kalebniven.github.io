@@ -5,7 +5,7 @@ function RangeSelectionInput({ range, setRange, rangeDisabled }) {
   return (
     <>
       <label htmlFor='range' className='form-label'>
-        Specify Rows from the file*
+        Specify Rows from the file
       </label>
       <input
         required

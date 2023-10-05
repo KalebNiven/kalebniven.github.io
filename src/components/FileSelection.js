@@ -17,6 +17,7 @@ function FileSelection() {
     const [selectedRow, setSelectedRow] = useState('');
     const [selectedRows, setSelectedRows] = useState([]);
     const [error, setError] = useState(null);
+    const [isGenerating, setGenerating] = useState(false);
 
     useEffect(() => {
         if (selectedFile && selectedFile.embedUrl) {
@@ -40,6 +41,7 @@ function FileSelection() {
 
     const errorCallback = (_error) => {
         setError(_error);
+        setLoading(false);
     }
 
     const handleSheetPicker = () => {
@@ -101,17 +103,40 @@ function FileSelection() {
     }
 
     const handleGenerateContent = async (data) => {
+        if (selectedDestination === null) {
+            setError("Please select a destination folder");
+        }
         try {
-            setLoading(true)
-            await generateContent({ data })
+            setLoading(true);
+            setGenerating(true);
+            let payload = {
+                data: data.length === 0 ? sheetRows : data, // pass all data if selectedRows are empty
+                max_tokens: 800,
+                folder_id: selectedDestination.id
+            };
+            await generateContent(payload, generateContentSuccessCallback, errorCallback);
         } catch (error) {
 
         } finally {
-            setLoading(false)
+            setLoading(false);
+            setGenerating(false);
         }
     }
 
+    const generateContentSuccessCallback = () => {
+        alert("Document has been created. :)");
+        setSelectedDestination(null);
+        setSelectedFile(null);
+        setCustomURL('');
+        setSelectedRows([]);
+        setSelectedRow('');
+        setSheetRows([]);
+    }
+
     const commulativeProgress = () => {
+        if (isGenerating) {
+            return 100
+        }
         const parameters = [Boolean(selectedFile !== null), Boolean(selectedDestination !== null), Boolean(selectedRows.length > 0)];
         const completedStepsCount = parameters.filter(Boolean).length;
         return Math.floor((completedStepsCount / (parameters.length + 1)) * 100);
@@ -144,7 +169,7 @@ function FileSelection() {
             }
 
             <div className='row mt-4'>
-                <div className='col-md-6 col-sm-6 col-xs-12'>
+                <div className='col-md-5 col-sm-5 col-xs-12'>
                     <Loadable loading={loading}>
                         {selectedFile ? <>
 
@@ -157,8 +182,9 @@ function FileSelection() {
                                 </div>
                                 <div className="card-body">
                                     {selectedDestination === null ?
-                                        <div>
-                                            <button onClick={handleFolderPicker} className='btn p-0 mb-3 btn-link'>Select Destination*</button>
+                                        <div className='mb-3 align-items-center d-flex'>
+                                            <button onClick={handleFolderPicker} className='btn p-0 btn-link'>Select Destination*</button>
+                                            <span className='font-12 ms-3'>(Folder should have public write access!)</span>
                                         </div>
                                         :
                                         <div className='d-flex align-items-center justify-content-between pt-2 pb-3'>
@@ -205,7 +231,7 @@ function FileSelection() {
                         </>}
                     </Loadable>
                 </div>
-                {selectedRows && selectedRows.length > 0 && <div className='col-md-6 col-sm-6 col-xs-12'>
+                {selectedRows && selectedRows.length > 0 && <div className='col-md-5 col-sm-5 col-xs-12'>
                     <SpreadsheetDisplay selectedRows={selectedRows} />
                 </div>}
             </div>

@@ -5,7 +5,7 @@ function SpreadsheetDisplay({ selectedRows }) {
         <div>
             <div className="card">
                 <div className="card-header">
-                    Selected Rows
+                    <b>Selected Rows</b>
                 </div>
                 <div className="card-body">
                     <div className='sheet-display-div'>
