@@ -60,7 +60,6 @@ function FileSelection() {
                     setSelectedFile(data.docs[0])
                 }
                 if (data.action === 'cancel') {
-                    console.log('User clicked cancel/close button')
                 }
             },
         })
@@ -79,7 +78,6 @@ function FileSelection() {
             setSelectFolderEnabled: true,
             // customViews: customViewsArray, // custom view
             callbackFunction: (data) => {
-                console.log(data)
                 if (data.action === 'picked') {
                     setSelectedDestination(data.docs[0]);
                 }
@@ -105,6 +103,9 @@ function FileSelection() {
     const handleGenerateContent = async (data) => {
         if (selectedDestination === null) {
             setError("Please select a destination folder");
+        }
+        if (data.length === 0) {
+            setSelectedRows([...sheetRows])
         }
         try {
             setLoading(true);
